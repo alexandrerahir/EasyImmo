@@ -1,3 +1,6 @@
+# DrawIO
 *.bkp
-bin/
-obj/
+
+# MAUI
+EasyImmo.App/bin/
+EasyImmo.App/obj/
