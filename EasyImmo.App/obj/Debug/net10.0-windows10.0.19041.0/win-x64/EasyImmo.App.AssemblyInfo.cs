@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EasyImmo.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+7094ed95b674a0b357820c1e6b6bdc0e060cf642")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d8371f35cc2869fc42f272af52d331de990e64d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("EasyImmo.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EasyImmo.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
