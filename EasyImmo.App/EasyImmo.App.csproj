@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>EasyImmo.App</ApplicationTitle>
+		<ApplicationTitle>EasyImmo</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.easyimmo.app</ApplicationId>
