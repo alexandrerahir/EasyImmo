@@ -4,20 +4,24 @@
             x:Class="EasyImmo.App.Views.MainPage"
             xmlns:controls="clr-namespace:EasyImmo.App.Controls"
             Shell.NavBarIsVisible="False" 
-            BackgroundColor="#F9F9F9">
+            BackgroundColor="WhiteSmoke">
 
 
-    <Grid ColumnDefinitions="250, *">
+    <!-- Page Dashboard -->
+    <Grid 
+        ColumnDefinitions="240, *">
 
-        <!-- Header gauche -->
-        <controls:Header Grid.Column="0" />
+        <!-- Header -->
+        <controls:Header Grid.Column="0"/>
 
-        <!-- Contenu de la page -->
-        <VerticalStackLayout Grid.Column="1" Padding="20">
-            <Label Text="Contenu de la page"
-                   FontSize="24"
-                   FontAttributes="Bold"/>
-        </VerticalStackLayout>
+        <!-- Dashboard -->
+        <Grid
+            Grid.Column="1"
+        >
+
+
+        </Grid>
+
 
     </Grid>
 

@@ -4,21 +4,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="EasyImmo.App.Controls.Header">
 
-    <Border 
-        Stroke="#C7C7C7"
-        StrokeThickness="1"
-        Padding="15"
-        StrokeShape="RoundRectangle 0,20,0,20"
-        BackgroundColor="White">
+    <Grid
+        BackgroundColor="#FFFFFF"
+        ColumnDefinitions="*, 1">
 
-        <VerticalStackLayout>
-            <Label Text="EasyImmo." FontFamily="PoppinsBold" FontSize="24" HorizontalTextAlignment="Center" TextColor="#FF6262"/>
-            <BoxView HeightRequest="2" BackgroundColor="#C7C7C7" Margin="0,25,0,25"/>
-            <Label Text="Accueil"/>
-            <Label Text="Statistiques"/>
-            <Label Text="Paramètres"/>
-        </VerticalStackLayout>
+        <Grid
+            Grid.Column="0"
+            RowDefinitions="*, Auto"
+            Padding="0,20">
 
-    </Border>
+            <VerticalStackLayout
+                Grid.Row="0">
+
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"  
+                    VerticalOptions="Center"
+                    Spacing="10">         
+
+                    <Image Source="logo.png" HeightRequest="30" WidthRequest="30"  VerticalOptions="Center" Aspect="AspectFit" />
+
+                    <Label Text="EasyImmo." FontFamily="PoppinsBold" FontSize="24" TextColor="#8A3D24" VerticalOptions="Center" TranslationY="+6"/>
+                        
+                </HorizontalStackLayout>
+
+                <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" Margin="0,25,0,25"/>
+
+                <VerticalStackLayout
+                    Spacing="5"
+                    Padding="20,0">
+
+                    <Button Text="Dashboard"  FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="#3D8A3D24" TextColor="#8A3D24" BorderWidth="2" BorderColor="#8A3D24"/>
+                    <Button Text="Propriétés" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
+                    <Button Text="Utilisateurs" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
+                    <Button Text="Calendrier" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
+
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Grid.Row="1">
+                <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" Margin="0,25,0,25"/>
+                <Button Grid.Row="1" Text="Se déconnecter" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="#8A3D24" Margin="20,0"/>
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <BoxView 
+            Grid.Column="1" 
+            WidthRequest="1" 
+            Color="#E0E0E0" />
+
+    </Grid>
 
 </ContentView>
