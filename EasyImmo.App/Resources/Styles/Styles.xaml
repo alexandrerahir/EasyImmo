@@ -2,7 +2,45 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+>
+
+    <!-- Styles personnalisé -->
+
+    <!-- Pages -->
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="#F9F9F9" /> 
+    </Style>
+
+    <!-- Titres -->
+    <Style x:Key="TitreSecondaire" TargetType="Label">
+        <Setter Property="TextColor" Value="Black" /> 
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+    </Style>
+
+    <Style x:Key="TitreTertiaire" TargetType="Label">
+        <Setter Property="TextColor" Value="#6E6E6E" /> 
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+
+
+    <!-- Boutons -->
+    <Style x:Key="BoutonSecondaire" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="TextColor" Value="#6E6E6E" />
+        <Setter Property="BorderColor" Value="#ACACAC" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+
+
+    <!-- Styles par défaut -->
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
@@ -27,10 +65,10 @@
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontFamily" Value="PoppinsRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
-        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="Padding" Value="14,10"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="EasyImmo.App.Views.AjoutProprietePage"
+            xmlns:controls="clr-namespace:EasyImmo.App.Controls"
+            Shell.NavBarIsVisible="False" 
+>
+
+
+    <!-- Page Ajout d'une propriété -->
+    <Grid 
+        ColumnDefinitions="240, *"
+    >
+
+        <!-- Header -->
+        <controls:Header Grid.Column="0"/>
+
+        <!-- Ajout d'une propriété -->
+        <Grid
+            Grid.Column="1"
+            Padding="25"
+            RowSpacing="25"
+            RowDefinitions="Auto, *"
+        >
+
+            <!-- Titre -->
+            <VerticalStackLayout>
+                <Label Grid.Row="0" Text="Ajouter une propriété" Style="{StaticResource TitreSecondaire}" />
+                <Label Grid.Row="0" Text="Complétez les détails afin d’enregistrer une nouvelle propriété." Style="{StaticResource TitreTertiaire}"/>
+            </VerticalStackLayout>
+
+            <Border
+                Grid.Row="1"
+                StrokeThickness="0"
+                BackgroundColor="White"
+                Padding="0"
+            >
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15" />
+                </Border.StrokeShape>
+
+                <Grid
+                    RowDefinitions="*, Auto"
+                    Padding="25"
+                    RowSpacing="20"
+                >
+
+                    <!-- SCROLLVIEW pour le formulaire -->
+                    <ScrollView Grid.Row="0">
+
+                        <Grid
+                            ColumnDefinitions="*, *"
+                            RowSpacing="20"
+                            ColumnSpacing="20"
+                        >
+
+                            <!-- Formulaire côté gauche -->
+                            <VerticalStackLayout 
+                                Grid.Column="0"
+                                Spacing="25"
+                            >
+                                <!-- Titre de l'annonce -->
+                                <VerticalStackLayout>
+                                    <Label Text="Titre"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Description de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Description"/>
+                                    <Editor Placeholder="" HeightRequest="250" />
+                                </VerticalStackLayout>
+
+                                <!-- Adresse de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Adresse"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Consommation de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Conso. énergétique (kWh/m²/an)"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Classe de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Classe Énergétique"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>A</x:String>
+                                            <x:String>B</x:String>
+                                            <x:String>C</x:String>
+                                            <x:String>D</x:String>
+                                            <x:String>E</x:String>
+                                            <x:String>F</x:String>
+                                            <x:String>G</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- Surface habitable de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Surface habitable (m²)"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Surface terrain de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Surface Terrain (m²)"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+
+
+                            <!-- Formulaire côté droit -->
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                Spacing="25"
+                            >
+                                                                           
+                                <!-- Nombre pieces de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Nombre de pièces"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Nombre Chambres de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Nombre de chambres"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Nombre salles de bain de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Nombre de salles de bain"/>
+                                    <Entry Placeholder="" ClearButtonVisibility="WhileEditing" />
+                                </VerticalStackLayout>
+
+                                <!-- Garage de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Garage inclus"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Oui</x:String>
+                                            <x:String>Non</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- Parking de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Parking inclus"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Oui</x:String>
+                                            <x:String>Non</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- Jardin de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Jardin inclus"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Oui</x:String>
+                                            <x:String>Non</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- Balcon de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Balcon inclus"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Oui</x:String>
+                                            <x:String>Non</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- Terasse de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="Terasse inclus"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Oui</x:String>
+                                            <x:String>Non</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <!-- État général de la propriété -->
+                                <VerticalStackLayout>
+                                    <Label Text="État général"/>
+                                    <Picker>
+                                        <Picker.Items>
+                                            <x:String>Neuf</x:String>
+                                            <x:String>Excellent état</x:String>
+                                            <x:String>Bon état</x:String>
+                                            <x:String>À rafraîchir</x:String>
+                                            <x:String>À rénover</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </ScrollView>
+
+                    <!-- Boutons en bas -->
+                    <HorizontalStackLayout
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Spacing="25">
+
+                        <Button Text="Annuler"
+                                WidthRequest="150"
+                                Style="{StaticResource BoutonSecondaire}" />
+
+                        <Button Text="Ajouter"
+                                WidthRequest="150" />
+
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

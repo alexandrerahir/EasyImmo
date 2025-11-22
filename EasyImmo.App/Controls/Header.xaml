@@ -33,7 +33,7 @@
                     Spacing="5"
                     Padding="20,0">
 
-                    <Button Text="Dashboard"  FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="#3D8A3D24" TextColor="#8A3D24" BorderWidth="2" BorderColor="#8A3D24"/>
+                    <Button Text="Dashboard"  FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="#3D8A3D24" TextColor="#8A3D24" BorderWidth="1" BorderColor="#8A3D24"/>
                     <Button Text="Propriétés" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
                     <Button Text="Utilisateurs" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
                     <Button Text="Calendrier" FontFamily="PoppinsRegular" FontSize="14" BackgroundColor="Transparent" TextColor="Black"/>
