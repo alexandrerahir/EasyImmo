@@ -2,14 +2,17 @@
 {
     public partial class App : Application
     {
-        public App()
+        public TitlebarWindows OurWindow { get; }
+        public App(TitlebarWindows ourWindow)
         {
             InitializeComponent();
+            OurWindow = ourWindow;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            OurWindow.Page = new AppShell();
+            return OurWindow;
         }
     }
 }

@@ -6,11 +6,102 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EasyImmo"
     xmlns:home="clr-namespace:EasyImmo.Pages.Home"
-    Title="EasyImmo">
+    Shell.NavBarIsVisible="False"
+    FlyoutBehavior="Locked"
+    FlyoutWidth="250"
+    FlyoutBackgroundColor="{StaticResource Background}">
+    
+    
+    <!-- Page Dashboard -->
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Dashboard"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
 
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xf246;"
+                    Color="Black" />
+            </ShellContent.Icon>
+
+        </ShellContent>
+    </FlyoutItem>
+
+    <!-- Page Propriétés -->
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate home:Home}"
-        Route="MainPage" />
+            Title="Propriétés"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
+
+        <ShellContent.Icon>
+            <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xec06;"
+                    Color="Black"/>
+        </ShellContent.Icon>
+
+    </ShellContent>
+
+    <!-- Page Dossiers -->
+    <ShellContent
+            Title="Dossiers"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
+
+        <ShellContent.Icon>
+            <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xe838;"
+                    Color="Black"/>
+        </ShellContent.Icon>
+
+    </ShellContent>
+
+    <!-- Page Utilisateurs -->
+    <ShellContent
+            Title="Utilisateurs"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
+
+        <ShellContent.Icon>
+            <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xe77b;"
+                    Color="Black" />
+        </ShellContent.Icon>
+
+    </ShellContent>
+
+    <!-- Page Calendrier -->
+    <ShellContent
+            Title="Calendrier"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
+
+        <ShellContent.Icon>
+            <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xed28;"
+                    Color="Black" />
+        </ShellContent.Icon>
+
+    </ShellContent>
+
+    <!-- Page Boîte mail -->
+    <ShellContent
+            Title="Boîte mail"
+            ContentTemplate="{DataTemplate home:Home}"
+            Route="MainPage">
+
+        <ShellContent.Icon>
+            <FontImageSource
+                    FontFamily="Segoe Fluent Icons"
+                    Glyph="&#xe715;"
+                    Color="Black" />
+        </ShellContent.Icon>
+
+    </ShellContent>
 
 </Shell>
