@@ -64,4 +64,9 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\EasyImmo.Business\EasyImmo.Business.csproj" />
+	  <ProjectReference Include="..\EasyImmo.Common\EasyImmo.Common.csproj" />
+	</ItemGroup>
+
 </Project>
