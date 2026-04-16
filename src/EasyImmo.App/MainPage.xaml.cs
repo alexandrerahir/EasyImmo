@@ -1,4 +1,6 @@
-﻿namespace EasyImmo.App
+﻿using EasyImmo.App.Services;
+
+namespace EasyImmo.App
 {
     public partial class MainPage : ContentPage
     {
@@ -7,6 +9,13 @@
         public MainPage()
         {
             InitializeComponent();
+
+            var agent = AuthService.Instance.CurrentAgent;
+
+            if (agent != null)
+            {
+                AgentNameLabel.Text = $"Bienvenue, {agent.FirstNameAgent} {agent.LastNameAgent}";
+            }
         }
 
         private void OnCounterClicked(object? sender, EventArgs e)

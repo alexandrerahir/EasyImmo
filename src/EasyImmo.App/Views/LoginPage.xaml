@@ -60,29 +60,56 @@
 
             <!-- Texte d'erreur affiché en cas d'erreur de connexion -->
             <Label x:Name="ErrorLabel"
-                   Text="Identifiants incorrects. Veuillez réessayer."
+                   Text="{Binding ErrorMessage}"
                    TextColor="#D32F2F"
                    FontFamily="SegoeUI"
                    FontSize="14"
-                   IsVisible="False" />
+                   IsVisible="{Binding IsErrorVisible}" />
 
             <!-- Champ de saisie pour l'adresse email -->
             <VerticalStackLayout Margin="0,0,0,10" Spacing="5">
                 <Label Text="Adresse mail" FontFamily="SegoeUI" FontSize="14" />
-                <Entry x:Name="EmailEntry" Placeholder="nom@exemple.com" />
+                <Entry Text="{Binding Email}" Placeholder="nom@exemple.com" />
             </VerticalStackLayout>
 
             <!-- Champ de saisie pour le mot de passe -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Mot de passe" FontFamily="SegoeUI" FontSize="14" />
-                <Entry x:Name="PasswordEntry" Placeholder="●●●●●●●●●●" IsPassword="True" />
+                <Entry Text="{Binding Password}" Placeholder="●●●●●●●●●●" IsPassword="True" />
             </VerticalStackLayout>
 
             <!-- Bouton de connexion -->
             <Button Text="Se connecter" 
-                    Clicked="OnLoginClicked"
-                    BackgroundColor="#0078D4"
-                    TextColor="White"/>
+                    Command="{Binding LoginCommand}"
+                    TextColor="White">
+                
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#005FB8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#196EBF" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#327EC5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+
+            </Button>
 
             <!-- Séparateur visuel entre les méthodes de connexion -->
             <Grid ColumnDefinitions="*,Auto,*" VerticalOptions="Center">
@@ -93,7 +120,6 @@
 
             <!-- Bouton de connexion Microsoft -->
             <Button Text="Se connecter avec Microsoft"
-                    Clicked="OnLoginClicked"
                     TextColor="#8C8C8C"
                     BackgroundColor="Transparent"
                     BorderColor="#8C8C8C"

@@ -13,11 +13,12 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a hovercraft number nine" />
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
+            <Label x:Name="AgentNameLabel"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="#0078D4" />
+            
             <Label
                 Text="Welcome to &#10;.NET Multi-platform App UI"
                 Style="{StaticResource SubHeadline}"
