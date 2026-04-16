@@ -1,7 +1,7 @@
 ﻿using EasyImmo.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EasyImmo.App.Services
+namespace EasyImmo.Business.Services
 {
     /// <summary>
     ///  AuthService
@@ -59,9 +59,6 @@ namespace EasyImmo.App.Services
         {
             // Suppression de l'agent
             CurrentAgent = null;
-
-            // Rediction vers la page de connexion
-            Application.Current.MainPage = new NavigationPage(new Views.LoginPage());
         }
 
     }

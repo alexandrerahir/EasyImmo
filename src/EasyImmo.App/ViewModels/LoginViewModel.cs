@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using EasyImmo.App.Services;
+using EasyImmo.Business.Services;
+using EasyImmo.App.Views;
 
 namespace EasyImmo.App.ViewModels
 {
@@ -64,6 +65,16 @@ namespace EasyImmo.App.ViewModels
                 ErrorMessage = "Une erreur technique est survenue lors de la connexion. Veuillez réessayer plus tard.";
                 IsErrorVisible = true;
             }
+        }
+
+        [RelayCommand]
+        private void Logout()
+        {
+            // 1. Appelle la logique métier
+            AuthService.Instance.Logout();
+
+            // 2. Gère la navigation visuelle
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using EasyImmo.App.Services;
+﻿using EasyImmo.Business.Services;
 
 namespace EasyImmo.App
 {
