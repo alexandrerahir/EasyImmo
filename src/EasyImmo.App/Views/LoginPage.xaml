@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
     LoginPage.xaml
-    - Page de connexion de l'application EasyImmo.
-    - Affiche un formulaire centré avec champ email, mot de passe et bouton de connexion.
+    Page de connexion de l'application EasyImmo.
 -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -81,35 +80,7 @@
             <!-- Bouton de connexion -->
             <Button Text="Se connecter" 
                     Command="{Binding LoginCommand}"
-                    TextColor="White">
-                
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroupList>
-                            <VisualStateGroup x:Name="CommonStates">
-
-                                <VisualState x:Name="Normal">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="#005FB8" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <VisualState x:Name="PointerOver">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="#196EBF" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                                <VisualState x:Name="Pressed">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="#327EC5" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                            </VisualStateGroup>
-                        </VisualStateGroupList>
-                    </VisualStateManager.VisualStateGroups>
-
-            </Button>
+                    Style="{StaticResource PrimaryButton}"/>
 
             <!-- Séparateur visuel entre les méthodes de connexion -->
             <Grid ColumnDefinitions="*,Auto,*" VerticalOptions="Center">

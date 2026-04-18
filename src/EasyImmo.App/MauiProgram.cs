@@ -17,6 +17,7 @@ namespace EasyImmo.App
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("SegoeUIVF.ttf", "SegoeUI");
+                    fonts.AddFont("Segoe Fluent Icons.ttf", "FluentIcons");
                 });
 
 #if DEBUG

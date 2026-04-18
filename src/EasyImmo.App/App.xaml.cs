@@ -7,11 +7,7 @@ namespace EasyImmo.App
         public App()
         {
             InitializeComponent();
-        }
-
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new NavigationPage(new LoginPage()));
+            MainPage = new AppShell();
         }
     }
 }

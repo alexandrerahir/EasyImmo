@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    AppShell.xaml
+    Shell de l'application EasyImmo.
+-->
 <Shell
     x:Class="EasyImmo.App.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EasyImmo.App"
-    Title="EasyImmo.App">
+    xmlns:views="clr-namespace:EasyImmo.App.Views"
+    Title="EasyImmo - Gestion immobilière"
+    FlyoutBehavior="Locked"
+    FlyoutBackgroundColor="#DBDBD2"
+    Shell.NavBarIsVisible="False">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!--  -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="FontImageSource">
+                <Setter Property="FontFamily" Value="FluentIcons" />
+                <Setter Property="Size" Value="22" />
+                <Setter Property="Color" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!--  -->
+    <FlyoutItem Title="Dashboard">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="&#xE80F;" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate views:PeoplePage}"/>
+    </FlyoutItem>
+
+    <!--  -->
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False">
+
+        <ShellContent Title="Propriétés" ContentTemplate="{DataTemplate views:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xEC06;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="Dossiers" ContentTemplate="{DataTemplate views:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE8B7;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="Personnes" ContentTemplate="{DataTemplate views:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE716;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="Calendrier" ContentTemplate="{DataTemplate views:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE787;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="Boite mail" ContentTemplate="{DataTemplate views:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE715;" />
+            </ShellContent.Icon>
+        </ShellContent>
+        
+    </FlyoutItem>
+
+    <!--  -->
+    <FlyoutItem Title="Paramètres">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="&#xE713;" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
+    </FlyoutItem>
+
+    <!--  -->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="20">
+            <Button Text="Se déconnecter" TextColor="white" Style="{StaticResource PrimaryButton}"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
 
 </Shell>
