@@ -14,7 +14,7 @@
     FlyoutBackgroundColor="#DBDBD2"
     Shell.NavBarIsVisible="False">
 
-    <!--  -->
+    <!-- Ressources pour les icons -->
     <Shell.Resources>
         <ResourceDictionary>
             <Style TargetType="FontImageSource">
@@ -25,7 +25,7 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!--  -->
+    <!-- Page dashboard -->
     <FlyoutItem Title="Dashboard">
         <FlyoutItem.Icon>
             <FontImageSource Glyph="&#xE80F;" />
@@ -33,33 +33,38 @@
         <ShellContent ContentTemplate="{DataTemplate views:PeoplePage}"/>
     </FlyoutItem>
 
-    <!--  -->
+    <!-- Menu avec toutes les pages -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False">
 
+        <!-- Page propriétes -->
         <ShellContent Title="Propriétés" ContentTemplate="{DataTemplate views:PeoplePage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xEC06;" />
             </ShellContent.Icon>
         </ShellContent>
 
+        <!-- Page dossiers -->
         <ShellContent Title="Dossiers" ContentTemplate="{DataTemplate views:PeoplePage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xE8B7;" />
             </ShellContent.Icon>
         </ShellContent>
 
+        <!-- Page personnes -->
         <ShellContent Title="Personnes" ContentTemplate="{DataTemplate views:PeoplePage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xE716;" />
             </ShellContent.Icon>
         </ShellContent>
 
+        <!-- Page calendrier -->
         <ShellContent Title="Calendrier" ContentTemplate="{DataTemplate views:PeoplePage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xE787;" />
             </ShellContent.Icon>
         </ShellContent>
 
+        <!-- Page boite mail -->
         <ShellContent Title="Boite mail" ContentTemplate="{DataTemplate views:PeoplePage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xE715;" />
@@ -68,7 +73,7 @@
         
     </FlyoutItem>
 
-    <!--  -->
+    <!-- Page paramètres -->
     <FlyoutItem Title="Paramètres">
         <FlyoutItem.Icon>
             <FontImageSource Glyph="&#xE713;" />
@@ -76,9 +81,9 @@
         <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
     </FlyoutItem>
 
-    <!--  -->
+    <!-- Bouton déconnexion -->
     <Shell.FlyoutFooter>
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout Padding="10">
             <Button Text="Se déconnecter" TextColor="white" Style="{StaticResource PrimaryButton}"/>
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
