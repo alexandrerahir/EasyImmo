@@ -4,10 +4,18 @@ namespace EasyImmo.App
 {
     public partial class App : Application
     {
-        public App()
+        public TitlebarWindow OurWindow { get; }
+        public App(TitlebarWindow ourWindow)
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            OurWindow = ourWindow;
+        }
+
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+
+            OurWindow.Page = new AppShell();
+            return OurWindow;
         }
     }
 }

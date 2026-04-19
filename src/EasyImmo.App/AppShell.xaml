@@ -9,9 +9,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EasyImmo.App"
     xmlns:views="clr-namespace:EasyImmo.App.Views"
-    Title="EasyImmo - Gestion immobilière"
     FlyoutBehavior="Locked"
-    FlyoutBackgroundColor="#DBDBD2"
+    FlyoutBackgroundColor="{StaticResource NavigationBackgroundColor}"
     Shell.NavBarIsVisible="False">
 
     <!-- Ressources pour les icons -->
