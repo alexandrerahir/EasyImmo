@@ -23,7 +23,7 @@ namespace EasyImmo.App
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<TitlebarWindow>();
             return builder.Build();
         }
     }

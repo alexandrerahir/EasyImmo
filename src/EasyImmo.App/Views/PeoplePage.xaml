@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    PeoplePage.xaml
+    Page qui liste les personnes
+-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.PeoplePage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}"
+             Shell.NavBarIsVisible="False">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <!-- Contenu principal de la page -->
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Header de la page -->
+            <VerticalStackLayout>
+                
+                <!-- Titre de la page -->
+                <Label Text="Personnes"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+
+                <!-- Sous-titre de la page -->
+                <Label Text="Gérez vos contacts, propriétaires et locataires."
+                       TextColor="Gray"/>
+                
+            </VerticalStackLayout>
+
+            <!-- Barre d'action -->
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <HorizontalStackLayout Grid.Column="0" Spacing="10">
+                    
+                    <!-- Barre de recherche -->
+                    <SearchBar Placeholder="Rechercher une personne"
+                               WidthRequest="250"
+                               HeightRequest="34"/>
+
+                    <!-- Texte nombre de personnes trouvées -->
+                    <Label Text="3 Personne(s) trouvée(s)"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="14"/>
+                    
+                </HorizontalStackLayout>
+
+                <!-- Bouton ajouter une personne -->
+                <Button Grid.Column="2"
+                        Text="Ajouter une personne" 
+                        Style="{StaticResource PrimaryButton}"/>
+            </Grid>
+
+            <!-- Liste des personnes -->
+            <CollectionView x:Name="PeopleCollection"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 7"
+                                HeightRequest="70"
+                                BackgroundColor="White"
+                                StrokeThickness="1"
+                                Stroke="{StaticResource BorderColor}"
+                                Padding="20,0">
+
+                            <Grid ColumnDefinitions="40, *, Auto">
+                                
+                                <!-- Icon personnes -->
+                                <Label Grid.Column="0"
+                                       Text="&#xE77B;" 
+                                       FontFamily="Segoe Fluent Icons"
+                                       FontSize="24"
+                                       TextColor="Black"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+
+                                <VerticalStackLayout Grid.Column="1" 
+                                                     VerticalOptions="Center">
+
+                                    <!-- Nom Prénom -->
+                                    <HorizontalStackLayout Spacing="5">
+                                        
+                                        <Label Text="{Binding LastNamePerson}" 
+                                               TextColor="Black" 
+                                               FontAttributes="Bold"
+                                               FontSize="14"/>
+
+                                        <Label Text="{Binding FirstNamePerson}" 
+                                               TextColor="Black" 
+                                               FontAttributes="Bold"
+                                               FontSize="14"/>
+                                        
+                                    </HorizontalStackLayout>
+
+                                    <!-- Adresse Mail -->
+                                    <Label Text="{Binding EmailPerson}"
+                                           TextColor="Gray" 
+                                           FontSize="12"/>
+                                    
+                                </VerticalStackLayout>
+
+                                <!-- Boutons -->
+                                <HorizontalStackLayout Grid.Column="2" 
+                                                       Spacing="10" 
+                                                       VerticalOptions="Center" 
+                                                       HorizontalOptions="End">
+
+                                    <!-- Bouton voir les détails -->
+                                    <Button Text="&#xE7b3;"
+                                            TextColor="Black"
+                                            Style="{StaticResource IconButton}"
+                                            ToolTipProperties.Text="Voir les détails"/>
+
+                                    <!-- Bouton modifier cette personne -->
+                                    <Button Text="&#xE70F;"
+                                            TextColor="Black"
+                                            Style="{StaticResource IconButton}"
+                                            ToolTipProperties.Text="Modifier cette personne"/>
+
+                                    <!-- Bouton supprimer cette personne -->
+                                    <Button Text="&#xE74D;"
+                                            TextColor="Black"
+                                            Style="{StaticResource IconButton}"
+                                            ToolTipProperties.Text="Supprimer cette personne"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+    </Border>
+</ContentPage>

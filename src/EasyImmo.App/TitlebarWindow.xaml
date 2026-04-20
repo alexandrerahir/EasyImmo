@@ -6,7 +6,7 @@
 
     <Window.TitleBar>
         <TitleBar Title="EasyImmo"
-                  BackgroundColor="{StaticResource NavigationBackgroundColor}">
+                  BackgroundColor="{DynamicResource NavigationBackgroundColor}">
         </TitleBar>
     </Window.TitleBar>
     

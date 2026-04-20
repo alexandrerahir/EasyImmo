@@ -83,7 +83,10 @@
     <!-- Bouton déconnexion -->
     <Shell.FlyoutFooter>
         <VerticalStackLayout Padding="10">
-            <Button Text="Se déconnecter" TextColor="white" Style="{StaticResource PrimaryButton}"/>
+            <Button Text="Se déconnecter" 
+                    TextColor="white"
+                    Style="{StaticResource PrimaryButton}"
+                    HeightRequest="44"/>
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 

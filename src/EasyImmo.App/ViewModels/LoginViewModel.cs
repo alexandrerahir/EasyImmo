@@ -70,10 +70,10 @@ namespace EasyImmo.App.ViewModels
         [RelayCommand]
         private void Logout()
         {
-            // 1. Appelle la logique métier
+            // Appel du service de déconnexion pour supprimer l'agent connecté
             AuthService.Instance.Logout();
 
-            // 2. Gère la navigation visuelle
+            // Redirection vers la page de connexion
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 

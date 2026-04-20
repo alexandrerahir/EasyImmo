@@ -80,7 +80,8 @@
             <!-- Bouton de connexion -->
             <Button Text="Se connecter" 
                     Command="{Binding LoginCommand}"
-                    Style="{StaticResource PrimaryButton}"/>
+                    Style="{StaticResource PrimaryButton}"
+                    HeightRequest="44"/>
 
             <!-- Séparateur visuel entre les méthodes de connexion -->
             <Grid ColumnDefinitions="*,Auto,*" VerticalOptions="Center">
