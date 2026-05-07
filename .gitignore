@@ -1,0 +1,30 @@
+# Dossiers et fichiers de visual studio et système
+.vs/
+.library/
+*.user
+*.userosscache
+*.sln.docstates
+.DS_Store
+
+# Dossiers de compilation
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Spécifiques à MAUI
+AppPackages/
+BundleArtifacts/
+PublishProfiles/
+Generated%20Files/
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+
+# Outils et caches 
+.config/
+.idea/
+*.swp
+*~
