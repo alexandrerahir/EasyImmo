@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EasyImmo.Common\EasyImmo.Common.csproj" />
+    <ProjectReference Include="..\EasyImmo.Data\EasyImmo.Data.csproj" />
+  </ItemGroup>
+
 </Project>

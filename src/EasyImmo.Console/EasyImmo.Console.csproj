@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EasyImmo.Business\EasyImmo.Business.csproj" />
     <ProjectReference Include="..\EasyImmo.Common\EasyImmo.Common.csproj" />
   </ItemGroup>
 
