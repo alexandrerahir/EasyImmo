@@ -1,6 +1,6 @@
 namespace EasyImmo.App.Views.Mail;
 
-public partial class MailPage : ContentView
+public partial class MailPage : ContentPage
 {
 	public MailPage()
 	{

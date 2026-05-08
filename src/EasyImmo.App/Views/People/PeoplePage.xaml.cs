@@ -1,6 +1,6 @@
 namespace EasyImmo.App.Views.People;
 
-public partial class PeoplePage : ContentView
+public partial class PeoplePage : ContentPage
 {
 	public PeoplePage()
 	{

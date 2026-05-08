@@ -4,11 +4,82 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EasyImmo.App"
-    Title="EasyImmo.App">
+    xmlns:properties="clr-namespace:EasyImmo.App.Views.Properties"
+    xmlns:folders="clr-namespace:EasyImmo.App.Views.Folders"
+    xmlns:people="clr-namespace:EasyImmo.App.Views.People"
+    xmlns:calendar="clr-namespace:EasyImmo.App.Views.Calendar"
+    xmlns:mail="clr-namespace:EasyImmo.App.Views.Mail"
+    FlyoutBehavior="Locked"
+    FlyoutBackgroundColor="{StaticResource NavigationBackgroundColor}"
+    Shell.NavBarIsVisible="False">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Ressources pour les icons -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="FontImageSource">
+                <Setter Property="FontFamily" Value="FluentIcons" />
+                <Setter Property="Size" Value="22" />
+                <Setter Property="Color" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
 
+    <!-- Page dashboard -->
+    <FlyoutItem Title="Dashboard">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="&#xE80F;" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+    </FlyoutItem>
+
+    
+    <!-- Menu avec toutes les pages -->
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False">
+
+        <!-- Page propriétes -->
+        <ShellContent Title="Propriétés" ContentTemplate="{DataTemplate properties:PropertiesPage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xEC06;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!-- Page dossiers -->
+        <ShellContent Title="Dossiers" ContentTemplate="{DataTemplate folders:FoldersPage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE8B7;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!-- Page personnes -->
+        <ShellContent Title="Personnes" ContentTemplate="{DataTemplate people:PeoplePage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE716;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!-- Page calendrier -->
+        <ShellContent Title="Calendrier" ContentTemplate="{DataTemplate calendar:CalendarPage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE787;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <!-- Page boite mail -->
+        <ShellContent Title="Boite mail" ContentTemplate="{DataTemplate mail:MailPage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xE715;" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+    </FlyoutItem>
+
+    
+    <!-- Bouton déconnexion -->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="10">
+            <Button Text="Se déconnecter" 
+                    TextColor="white"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+    
 </Shell>

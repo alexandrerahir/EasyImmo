@@ -1,6 +1,6 @@
 namespace EasyImmo.App.Views.Calendar;
 
-public partial class CalendarPage : ContentView
+public partial class CalendarPage : ContentPage
 {
 	public CalendarPage()
 	{
