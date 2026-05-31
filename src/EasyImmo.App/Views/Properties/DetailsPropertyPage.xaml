@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.Properties.DetailsPropertyPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <!-- Remise du Binding Context principal -->
+            <VerticalStackLayout Spacing="20">
+
+                <VerticalStackLayout Spacing="20" BindingContext="{Binding CurrentProperty}">
+                    <Grid RowDefinitions="200, Auto" RowSpacing="15">
+
+                        <!-- Image -->
+                        <Border StrokeShape="RoundRectangle 12" StrokeThickness="0" Grid.Row="0">
+                            <Image Source="{Binding Photos[0].PhotoUrl, TargetNullValue='https://www.demeures-cote-dargent.com/wp-content/uploads/2023/07/Groupe_InCA-M8_010.jpg', FallbackValue='https://www.demeures-cote-dargent.com/wp-content/uploads/2023/07/Groupe_InCA-M8_010.jpg'}" Aspect="AspectFill" />
+                        </Border>
+
+                        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" VerticalOptions="Center">
+
+                            <!-- Type, titre et adresse-->
+                            <VerticalStackLayout Grid.Column="0" Spacing="5" VerticalOptions="Center">
+                                <Label Text="{Binding PropertyType.PropertyTypeName}" TextTransform="Uppercase" FontSize="14" TextColor="Gray" FontAttributes="Bold" />
+                                <Label Text="{Binding PropertyTitle}" FontSize="28" FontAttributes="Bold" TextColor="Black"/>
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="{Binding Address.Street.PostalCode.Municipality.MunicipalityName}" TextColor="Gray" FontSize="16" />
+                                    <Label Text="-" TextColor="Gray" FontSize="16"/>
+                                    <Label Text="{Binding Address.Street.PostalCode.Municipality.Province.Region.Country.CountryName}" TextColor="Gray" FontSize="16"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Bouton Ajouter une annonce -->
+                            <Button Grid.Column="1" 
+                                    Text="Ajouter une annonce" 
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddListingCommand}"/>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Description -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Description de la propriété" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+                        <Label Text="{Binding PropertyDescription}" FontSize="15" TextColor="#444" LineBreakMode="WordWrap"/>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="30" Margin="0, 10, 0, 0">
+
+                        <!-- Caractéristiques -->
+                        <Border Grid.Column="0" Padding="15" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" BackgroundColor="White">
+                            <VerticalStackLayout Spacing="15">
+                                <Label Text="Caractéristiques" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*" RowSpacing="15">
+
+                                    <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                        <Label Text="Surfaces" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].LivingArea, StringFormat='{}Hab: {0} m²'}" TextColor="Black" FontAttributes="Bold"/>
+                                        <Label Text="{Binding PropertyDetails[0].LandArea, StringFormat='{}Terrain: {0} m²'}" TextColor="Black"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                        <Label Text="Chambres" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].BedroomCount}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                                        <Label Text="Salles de bain" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].BathroomCount}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                                        <Label Text="Pièces" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].TotalRoomCount, StringFormat='{0} au total'}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+                                        <Label Text="État du bien" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].Condition}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                                        <Label Text="Construction" TextColor="Gray" FontSize="12"/>
+                                        <Label Text="{Binding PropertyDetails[0].ConstructionYear}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="20">
+
+                            <!-- Énergie -->
+                            <Border Padding="15" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="15">
+                                    <Label Text="Énergie et chauffage" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" RowSpacing="15">
+
+                                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                            <Label Text="PEB" TextColor="Gray" FontSize="12"/>
+                                            <Label Text="{Binding PropertyDetails[0].EnergyClass}" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                            <Label Text="Consommation" TextColor="Gray" FontSize="12"/>
+                                            <Label Text="{Binding PropertyDetails[0].EnergyConsumption, StringFormat='{}{0} kWh/m²/an'}" TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                            <Label Text="Type de chauffage" TextColor="Gray" FontSize="12"/>
+                                            <Label Text="{Binding PropertyDetails[0].HeatingType}" TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- Propriétaire -->
+                            <Border Padding="15" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="10">
+                                    <Label Text="Propriétaire" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="{Binding Person.FirstNamePerson}" TextColor="Black" FontSize="16"/>
+                                        <Label Text="{Binding Person.LastNamePerson}" TextColor="Black" FontSize="16"/>
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding Person.EmailPerson}" TextColor="Gray" FontSize="14"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- Section des annonces -->
+                <VerticalStackLayout Spacing="10" Margin="0, 20, 0, 0">
+                    <Label Text="Annonces" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+
+                    <CollectionView ItemsSource="{Binding SortedListings}">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.EmptyView>
+                            <Label Text="Aucune annonce en cours ou terminée pour ce bien." TextColor="Gray" FontSize="14" />
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 7"
+                                        HeightRequest="70"
+                                        BackgroundColor="White"
+                                        StrokeThickness="1"
+                                        Stroke="{StaticResource BorderColor}"
+                                        Padding="20,0">
+
+                                    <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="20" VerticalOptions="Center">
+
+                                        <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="2">
+                                            
+                                            <!-- Titre -->
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label Text="{Binding Listing.ListingType.ListingTypeName}" FontAttributes="Bold" FontSize="15" TextColor="Black" VerticalOptions="Center"/>
+                                                <Label Text="par" FontSize="13" TextColor="Gray" VerticalOptions="Center"/>
+                                                <Label Text="{Binding Listing.Agent.FirstNameAgent}" FontSize="13" TextColor="Black" VerticalOptions="Center"/>
+                                                <Label Text="{Binding Listing.Agent.LastNameAgent}" FontSize="13" TextColor="Black" VerticalOptions="Center"/>
+                                            </HorizontalStackLayout>
+
+                                            <!-- Date -->
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label Text="Début :" TextColor="Gray" FontSize="12" />
+                                                <Label Text="{Binding Listing.ListingStartDate, StringFormat='{}{0:dd/MM/yyyy}'}" TextColor="Black" FontSize="12" />
+                                                <Label Text="Fin :" TextColor="Gray" FontSize="12" Margin="10,0,0,0" />
+                                                <Label Text="{Binding Listing.ListingEndDate, StringFormat='{}{0:dd/MM/yyyy}', TargetNullValue='Indéfinie'}" TextColor="Black" FontSize="12" />
+                                            </HorizontalStackLayout>
+
+                                        </VerticalStackLayout>
+
+                                        <!-- Statut -->
+                                        <Border Grid.Column="1" BackgroundColor="{Binding StatusColor}" Padding="8,4" StrokeShape="RoundRectangle 4" StrokeThickness="0" VerticalOptions="Center">
+                                            <Label Text="{Binding StatusText}" TextColor="White" FontAttributes="Bold" FontSize="12" HorizontalOptions="Center"/>
+                                        </Border>
+
+                                        <!-- Boutons -->
+                                        <HorizontalStackLayout Grid.Column="2" Spacing="10" VerticalOptions="Center">
+                                            
+                                            <!-- Détails -->
+                                            <Button Text="&#xE7b3;"
+                                                    TextColor="White"
+                                                    FontFamily="Segoe Fluent Icons"
+                                                    ToolTipProperties.Text="Voir les détails de l'annonce"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DetailsListingCommand}"
+                                                    CommandParameter="{Binding Listing}"/>
+                                            
+                                            <!-- Modifier -->
+                                            <Button Text="&#xE70F;"
+                                                    TextColor="White"
+                                                    FontFamily="Segoe Fluent Icons"
+                                                    ToolTipProperties.Text="Modifier cette annonce"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditListingCommand}"
+                                                    CommandParameter="{Binding Listing}"/>
+                                            
+                                            <!-- Supprimer -->
+                                            <Button Text="&#xE74D;"
+                                                    TextColor="White"
+                                                    FontFamily="Segoe Fluent Icons"
+                                                    ToolTipProperties.Text="Supprimer cette annonce"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteListingCommand}"
+                                                    CommandParameter="{Binding Listing}"/>
+                                        </HorizontalStackLayout>
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Border>
+
+</ContentPage>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.People.EditPersonPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout>
+                <Label Text="Modifier une personne" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Gérez vos contacts, propriétaires et locataires." TextColor="Gray"/>
+            </VerticalStackLayout>
+
+            <!-- Formulaire de modification d'une personne -->
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Bloc Informations Générales -->
+                    <Border Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="White"
+                            Padding="20">
+
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="Informations générales" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+
+                            <!-- Nom et prénom -->
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="Nom" TextColor="Black" FontSize="14" />
+                                    <Entry Text="{Binding LastName}" Placeholder="Rahir" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                    <Label Text="Prénom" TextColor="Black" FontSize="14" />
+                                    <Entry Text="{Binding FirstName}" Placeholder="Alexandre" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <!-- Adresse mail -->
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Adresse Email" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding Email}" Placeholder="exemple@mail.com" Keyboard="Email"/>
+                            </VerticalStackLayout>
+
+                            <!-- Numéro de téléphone -->
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Numéro de téléphone" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding PhoneNumber}" Placeholder="+32 111 22 33 44" Keyboard="Telephone" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Bloc Adresse -->
+                    <Border Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="White"
+                            Padding="20">
+
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="Adresse" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+
+                            <!-- Rue, numéro de maison et numéro de boîte -->
+                            <Grid ColumnDefinitions="*,80, 80" ColumnSpacing="20">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="Rue" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="Rue de la Paix" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                    <Label Text="N°" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="12" Keyboard="Numeric" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="2" Spacing="2">
+                                    <Label Text="Boîte" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="A" Keyboard="Default" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <!-- Ville et code postal -->
+                            <Grid ColumnDefinitions="*, 200" ColumnSpacing="20">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="Ville" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="Charleroi" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                    <Label Text="Code Postal" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="6000" Keyboard="Numeric" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <!-- Provinces et pays -->
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="Province" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="Hainaut" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                    <Label Text="Pays" TextColor="Black" FontSize="14" />
+                                    <Entry Placeholder="Belgique" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Boutons Modifier -->
+                    <Button Text="Modifier"
+                            Command="{Binding SaveCommand}"/>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </VerticalStackLayout>
+
+    </Border>
+
+</ContentPage>

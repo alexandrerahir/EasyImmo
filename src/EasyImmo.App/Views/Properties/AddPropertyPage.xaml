@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.Properties.AddPropertyPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+
+                <!-- Header de la page -->
+                <VerticalStackLayout>
+                    <Label Text="Ajouter une propriété" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="Gérez vos propriétés, mise en ventes et mise en location." TextColor="Gray"/>
+                </VerticalStackLayout>
+
+                <!-- Informations générales -->
+                <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Informations générales" FontAttributes="Bold" FontSize="16" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <!-- Titre -->
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Titre" TextColor="Black" FontSize="14" />
+                            <Entry Text="{Binding Title}" Placeholder="Maison 4 facades"/>
+                        </VerticalStackLayout>
+
+                        <!-- Description -->
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Description" TextColor="Black" FontSize="14" />
+                            <Entry Text="{Binding Description}" Placeholder="Belle maison avec 4 facades... "/>
+                        </VerticalStackLayout>
+
+                        <!-- Type de propriété -->
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="Type de propriété" TextColor="Black" FontSize="14" />
+                                <Picker ItemsSource="{Binding PropertyTypes}"
+                                        ItemDisplayBinding="{Binding PropertyTypeName}"
+                                        SelectedItem="{Binding SelectedPropertyType}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Propriétaire" TextColor="Black" FontSize="14" />
+                                <Picker ItemsSource="{Binding People}"
+                                        ItemDisplayBinding="{Binding FullName}"
+                                        SelectedItem="{Binding SelectedPerson}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Adresse -->
+                <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Adresse" FontAttributes="Bold" FontSize="16" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <!-- Rue, numéro, boite -->
+                        <Grid ColumnDefinitions="*, 80, 80" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Rue" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding StreetName}" Placeholder="Rue de la Paix" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="N°" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding HouseNumber}" Placeholder="12" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="2">
+                                <Label Text="Boîte" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding BoxNumber}" Placeholder="A" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <!-- Ville et code postal -->
+                        <Grid ColumnDefinitions="*, 400" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Ville" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding City}" Placeholder="Charleroi" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Code Postal" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding PostalCode}" Placeholder="6000" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <!-- Provinces et pays -->
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Provinces" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding ProvinceName}" Placeholder="Hainaut" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Pays" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding Country}" Placeholder="Belgique" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Surface -->
+                <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Surface" FontAttributes="Bold" FontSize="16" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Surface habitable (m²)" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding LivingArea}" Placeholder="100" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Surface terrain (m²)" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding LandArea}" Placeholder="200" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="2">
+                                <Label Text="Surface totale (m²)" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding TotalSurfaceArea}" Placeholder="300" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Disposition des pièces -->
+                <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Disposition des pièces" FontAttributes="Bold" FontSize="16" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Toilettes" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding ToiletCount}" Placeholder="1" Keyboard="Numeric"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Chambres" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding BedroomCount}" Placeholder="3" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="2">
+                                <Label Text="Salles de bain" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding BathroomCount}" Placeholder="1" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="3" Spacing="2">
+                                <Label Text="Nombre totales" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding TotalRoomCount}" Placeholder="4" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Énergie et caractéristiques -->
+                <Border Stroke="{StaticResource BorderColor}" StrokeThickness="1" Padding="15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Énergie et caractéristiques" FontAttributes="Bold" FontSize="16" TextColor="Black" Margin="0,0,0,10"/>
+
+                        <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Classe énergétique" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding EnergyClass}" Placeholder="B" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="Conso. (kWh/m²/an)" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding EnergyConsumption}" Placeholder="95" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="2">
+                                <Label Text="Type de chauffage" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding HeatingType}" Placeholder="Gaz" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="3" Spacing="2">
+                                <Label Text="Année de construction" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding ConstructionYear}" Placeholder="2010" Keyboard="Numeric" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="4" Spacing="2">
+                                <Label Text="État du bien" TextColor="Black" FontSize="14" />
+                                <Entry Text="{Binding Condition}" Placeholder="Bon état" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Bouton ajouter -->
+                <Button Text="Ajouter"
+                        Margin="0,10,0,20"
+                        Command="{Binding SaveCommand}"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+</ContentPage>

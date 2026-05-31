@@ -1,4 +1,5 @@
 ﻿using EasyImmo.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyImmo.Business.Services
 {
@@ -19,13 +20,39 @@ namespace EasyImmo.Business.Services
         /// <summary>
         /// Récupère une personne par son id
         /// </summary>
-        public static Data.Entities.Person GetPersonById(int id)
+        public static Data.Entities.Person? GetPersonById(int id)
         {
             using (var entities = new Data.Entities.EasyImmoContext())
             {
-                return entities.People.FirstOrDefault(p => p.PersonId == id);
-            }
+                return entities.People
+                    // Adresse de la personne
+                    .Include(p => p.Address)
+                        .ThenInclude(a => a.Street)
+                            .ThenInclude(s => s.PostalCode)
+                                .ThenInclude(pc => pc.Municipality)
+                                    .ThenInclude(m => m.Province)
+                                        .ThenInclude(prov => prov.Region)
+                                            .ThenInclude(r => r.Country)
 
+                    // Les dossiers de la personne
+                    .Include(p => p.Folders)
+
+                    // Les propriétés et leurs détails de la personne
+                    .Include(p => p.Properties)
+                        .ThenInclude(prop => prop.PropertyDetails)
+
+                    // Les adresses des propriétés de la personne
+                    .Include(p => p.Properties)
+                        .ThenInclude(prop => prop.Address)
+                            .ThenInclude(a => a.Street)
+                                .ThenInclude(s => s.PostalCode)
+                                    .ThenInclude(pc => pc.Municipality)
+                                        .ThenInclude(m => m.Province)
+                                            .ThenInclude(prov => prov.Region)
+                                                .ThenInclude(r => r.Country)
+
+                    .FirstOrDefault(p => p.PersonId == id);
+            }
         }
 
         /// <summary>

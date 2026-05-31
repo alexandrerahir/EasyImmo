@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.People.PersonDetailPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="25">
+
+                <!-- Header -->
+                <HorizontalStackLayout Spacing="20" VerticalOptions="Start">
+
+                    <!-- Icone personne -->
+                    <Border StrokeShape="RoundRectangle 50" HeightRequest="75" WidthRequest="75" 
+                    BackgroundColor="{StaticResource BorderColor}" StrokeThickness="0">
+                        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="-2">
+                            <Label Text="{Binding CurrentPerson.FirstNamePerson[0]}" TextColor="black" FontSize="28" FontFamily="OpenSansSemibold" />
+                            <Label Text="{Binding CurrentPerson.LastNamePerson[0]}" TextColor="black" FontSize="28" FontFamily="OpenSansSemibold"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Prénom, nom et email -->
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="5">
+                            <Label Text="{Binding CurrentPerson.FirstNamePerson}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding CurrentPerson.LastNamePerson}" FontSize="22" FontAttributes="Bold" TextColor="Black"/>
+                        </HorizontalStackLayout>
+                        <Label Text="{Binding CurrentPerson.EmailPerson}" FontSize="16" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- Informations de la personne -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Informations" FontSize="18" FontAttributes="Bold" TextColor="black"/>
+                    <Border StrokeShape="RoundRectangle 10" Padding="15" BackgroundColor="White" Stroke="{StaticResource BorderColor}">
+                        <VerticalStackLayout Spacing="10">
+
+                            <!-- Email -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="&#xE715;" FontFamily="FluentIcons" VerticalOptions="Center"/>
+                                <Label Text="{Binding CurrentPerson.EmailPerson}" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+
+                            <!-- Numéro de téléphone -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="&#xe717;" FontFamily="FluentIcons" VerticalOptions="Center"/>
+                                <Label Text="{Binding CurrentPerson.PhonePerson}" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+
+                            <!-- Adresse -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="&#xe7b7;" FontFamily="FluentIcons" VerticalOptions="Center"/>
+                                <Label Text="Adresse inconnue" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+
+
+                <!-- Section propriété  -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Propriétés" FontSize="18" FontAttributes="Bold" TextColor="black"/>
+
+                    <FlexLayout Wrap="Wrap" 
+                                JustifyContent="Start"
+                                AlignItems="Start"
+                                BindableLayout.ItemsSource="{Binding CurrentPerson.Properties}">
+
+                        <BindableLayout.EmptyView>
+                            <Label Text="Cette personne n'a aucune propriété." TextColor="Gray"/>
+                        </BindableLayout.EmptyView>
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+
+                                <!-- Carte propriété -->
+                                <Border StrokeShape="RoundRectangle 12" 
+                                        BackgroundColor="White" 
+                                        Stroke="{StaticResource BorderColor}"
+                                        WidthRequest="300" 
+                                        Margin="0, 0, 15, 15"
+                                        Padding="0">
+
+                                    <VerticalStackLayout>
+
+                                        <!-- Photo de la propriété -->
+                                        <Border StrokeShape="RoundRectangle 12,12,0,0" 
+                                                HeightRequest="120" 
+                                                BackgroundColor="#F0F0F0"
+                                                StrokeThickness="0"
+                                                Margin="0">
+
+                                        </Border>
+
+                                        <!-- Informations de la propriété -->
+                                        <VerticalStackLayout Padding="15" Spacing="8">
+
+                                            <!-- Titre du bien -->
+                                            <Label Text="{Binding PropertyTitle}" FontAttributes="Bold" TextColor="Black"  FontSize="16"/>
+
+                                            <!-- Adresse -->
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label Text="&#xe7b7;" FontFamily="FluentIcons" VerticalOptions="Center" TextColor="Gray"/>
+                                                <Label Text="Adresse inconnue" VerticalOptions="Center" TextColor="Gray" FontSize="13"/>
+                                            </HorizontalStackLayout>
+
+                                            <!-- Bouton -->
+                                            <Button Text="Consulter" 
+                                                    Margin="0,5,0,0"
+                                                    HeightRequest="35" 
+                                                    HorizontalOptions="Fill"/>
+
+                                        </VerticalStackLayout>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </FlexLayout>
+                </VerticalStackLayout>
+
+
+
+                <!-- Section Dossiers -->
+                <VerticalStackLayout>
+
+                    <!-- Titre -->
+                    <Label Text="Dossiers" FontSize="18" FontAttributes="Bold" TextColor="black"/>
+
+                    <CollectionView ItemsSource="{Binding CurrentPerson.Folders}" SelectionMode="None">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.EmptyView>
+                            <Label Text="Cette personne n'a aucun dossier pour le moment." TextColor="Gray"/>
+                        </CollectionView.EmptyView>
+
+                        <!-- Carte dossier -->
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 7"
+                                        HeightRequest="70"
+                                        BackgroundColor="White"
+                                        StrokeThickness="1"
+                                        Stroke="{StaticResource BorderColor}"
+                                        Padding="20,0">
+
+                                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="20">
+
+                                        <!-- Numéro du dossier -->
+                                        <HorizontalStackLayout Grid.Column="0" VerticalOptions="Center" Spacing="10">
+                                            <Label Text="&#xe838;" FontFamily="FluentIcons" FontSize="20" TextColor="Black"/>
+                                            <Label Text="{Binding FolderId, StringFormat='Dossier n°{0}'}" TextColor="Black" FontSize="14" FontAttributes="Bold"/>
+                                        </HorizontalStackLayout>
+
+                                        <!-- Bouton -->
+                                        <HorizontalStackLayout Grid.Column="2" 
+                                                               Spacing="10" 
+                                                               VerticalOptions="Center" 
+                                                               HorizontalOptions="End">
+
+                                            <!-- Ouvrir -->
+                                            <Button Text="&#xE7b3;"
+                                                    TextColor="white"
+                                                    FontFamily="Segoe Fluent Icons"
+                                                    ToolTipProperties.Text="Ouvrir ce dossier"/>
+
+                                        </HorizontalStackLayout>
+                                    </Grid>
+
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+    
+</ContentPage>

@@ -9,4 +9,3 @@ Date        : 31-03-2026
 INSERT INTO ListingType (ListingTypeName) VALUES
     ('Vente'),
     ('Location');
-

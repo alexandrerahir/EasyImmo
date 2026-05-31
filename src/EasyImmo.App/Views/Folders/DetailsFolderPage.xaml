@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.Folders.DetailsFolderPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+
+                <!-- Header -->
+                <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="20" VerticalOptions="Start">
+
+                    <!-- Icon dossier -->
+                    <Border Grid.Column="0" 
+                            StrokeShape="RoundRectangle 50" 
+                            HeightRequest="75" 
+                            WidthRequest="75" 
+                            BackgroundColor="{StaticResource BorderColor}" 
+                            StrokeThickness="0">
+
+                        <Label Text="&#xe838;" FontFamily="FluentIcons" FontSize="34" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+
+                    <!-- Titre et statut -->
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="{Binding FolderDetails.FolderId, StringFormat='Dossier n°{0}'}" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Status, StringFormat='Statut actuel : {0}'}" FontSize="16" TextColor="Gray"/>
+                    </VerticalStackLayout>
+
+                    <!-- Boutons -->
+                    <HorizontalStackLayout Grid.Column="2" Spacing="5">
+
+                        <!-- Modifier statut -->
+                        <Button
+                            Text="Modifier le statut"
+                            VerticalOptions="Center"
+                            HeightRequest="40"
+                            Padding="15,0"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditStatusCommand}"
+                            CommandParameter="{Binding .}"/>
+
+                        <!-- Ajouter étape -->
+                        <Button Text="Ajouter une étape"
+                                VerticalOptions="Center"
+                                HeightRequest="40"
+                                Padding="15,0"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddStepCommand}"
+                                CommandParameter="{Binding .}"
+                                IsVisible="True">
+
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding IsClosed}" Value="True">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <!-- Informations du dossier -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Informations" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+
+                    <Border StrokeShape="RoundRectangle 10" 
+                            Padding="15" 
+                            BackgroundColor="White" 
+                            Stroke="{StaticResource BorderColor}">
+
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" RowSpacing="15">
+
+                            <!-- Prospect -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                <Label Text="PROSPECT LIÉ" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="{Binding FolderDetails.Person.FirstNamePerson}" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding FolderDetails.Person.LastNamePerson}" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding FolderDetails.Person.EmailPerson}" TextColor="Gray" FontSize="14"/>
+                                <Label Text="{Binding FolderDetails.Person.PhonePerson}" TextColor="Gray" FontSize="14"/>
+                            </VerticalStackLayout>
+
+                            <!-- Date d'ouverture -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <Label Text="OUVERT LE" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.FolderOpenDate, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                            <!-- Date de fermeture -->
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsClosed}">
+                                <Label Text="FERMÉ LE" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.FolderCloseDate, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                            <!-- Raison de la fermeture -->
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" IsVisible="{Binding IsClosed}">
+                                <Label Text="RAISON DE LA FERMETURE" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.FolderCloseReason}" FontSize="16" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Section Annonce -->
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Annonce" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+
+                    <Border StrokeShape="RoundRectangle 10" 
+                            Padding="15" 
+                            BackgroundColor="White" 
+                            Stroke="{StaticResource BorderColor}">
+
+                        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" RowSpacing="15">
+
+                            <!-- Propriété -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                <Label Text="PROPRIÉTÉ LIÉE" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.Listing.Property.PropertyTitle}" FontAttributes="Bold" TextColor="Black" FontSize="16"/>
+                            </VerticalStackLayout>
+
+                            <!-- Agent -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <Label Text="AGENT RESPONSABLE" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="{Binding FolderDetails.Listing.Agent.FirstNameAgent}" FontAttributes="Bold" TextColor="Black" FontSize="16"/>
+                                    <Label Text="{Binding FolderDetails.Listing.Agent.LastNameAgent}" FontAttributes="Bold" TextColor="Black" FontSize="16"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Type de listing -->
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                                <Label Text="EST EN" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.Listing.ListingType.ListingTypeName}" FontSize="16" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                            <!-- Prix -->
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                                <Label Text="PRIX" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding FolderDetails.Listing.ListingPrice, StringFormat='{0} €'}" FontSize="16" TextColor="Black"/>
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+
+                <!-- Etapes du dossier -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Etapes du dossier" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding FolderDetails.FolderSteps}" Spacing="10">
+
+                        <BindableLayout.EmptyView>
+                            <Label Text="Aucune étape pour le moment." TextColor="Gray" FontAttributes="Italic" Padding="5"/>
+                        </BindableLayout.EmptyView>
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 8" Padding="15" BackgroundColor="White" Stroke="{StaticResource BorderColor}">
+
+                                    <!-- Informations -->
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="{Binding StepType.StepTypeName}" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                            <Label Text="-" TextColor="Gray" FontSize="14" VerticalOptions="Center"/>
+                                            <Label Text="{Binding FolderStepDate, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray" FontSize="14" VerticalOptions="Center"/>
+                                        </HorizontalStackLayout>
+
+                                        <Label Text="{Binding FolderStepNote}" FontSize="14" TextColor="Black"/>
+
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+</ContentPage>

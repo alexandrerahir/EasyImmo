@@ -1,5 +1,6 @@
 ﻿using EasyImmo.Business.Services;
 using EasyImmo.Data.Entities;
+using System;
 
 namespace EasyImmo.Console
 {
@@ -7,6 +8,7 @@ namespace EasyImmo.Console
     {
         static void Main(string[] args)
         {
+
 
         }
     }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.Folders.AddStepFolderPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}"
+             Title="Ajouter une étape">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="25">
+
+                <!-- Header -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Nouvelle étape" FontSize="24" FontFamily="OpenSansSemibold" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="Tracez l'avancement du dossier avec une nouvelle action" TextColor="Gray"/>
+                </VerticalStackLayout>
+
+                <!-- Formulaire -->
+                <Border StrokeShape="RoundRectangle 10" Padding="20" BackgroundColor="White" Stroke="{StaticResource BorderColor}">
+                    <VerticalStackLayout Spacing="20">
+
+                        <!-- Type d'étape -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Type d'étape"/>
+                            <Picker ItemsSource="{Binding StepTypes}" 
+                                    SelectedItem="{Binding SelectedStepType}" 
+                                    ItemDisplayBinding="{Binding StepTypeName}"
+                                    HeightRequest="45"/>
+                        </VerticalStackLayout>
+
+                        <!-- Date -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Date de réalisation"/>
+                            <DatePicker Date="{Binding StepDate}" Format="dd/MM/yyyy" HeightRequest="45"/>
+                        </VerticalStackLayout>
+
+                        <!-- Note explicative -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Note"/>
+                            <Editor Text="{Binding StepNote}" 
+                                    Placeholder="Ajouter une note à cette étape" 
+                                    HeightRequest="80"
+                                    AutoSize="TextChanges"/>
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Boutons ajouter -->
+                <Button Text="Ajouter" 
+                        Command="{Binding AddStepCommand}"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+
+</ContentPage>

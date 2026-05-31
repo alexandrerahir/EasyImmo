@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyImmo.App.Views.Folders.EditStatusFolderPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="25">
+
+                <!-- Header -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Modifier le statut du dossier" FontSize="24" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="Mettez à jour le statut du dossier pour suivre son avancement" TextColor="Gray"/>
+                </VerticalStackLayout>
+
+                <!-- Formulaire -->
+                <Border StrokeShape="RoundRectangle 10" Padding="20" BackgroundColor="White" Stroke="{StaticResource BorderColor}">
+                    <VerticalStackLayout Spacing="20">
+
+                        <!-- Sélection du statut -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Nouveau statut"/>
+                            <Picker ItemsSource="{Binding StatusOptions}" 
+                                    SelectedItem="{Binding SelectedStatus}" 
+                                    HeightRequest="45"/>
+                        </VerticalStackLayout>
+
+                        <!-- Formulaire de cloture -->
+                        <VerticalStackLayout Spacing="20" IsVisible="{Binding IsClosedSelected}">
+
+                            <!-- Séléction de la date -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Date de fermeture"/>
+                                <DatePicker Date="{Binding CloseDate}" Format="dd/MM/yyyy" HeightRequest="45"/>
+                            </VerticalStackLayout>
+
+                            <!-- Raison de la fermeture -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Raison de la fermeture"/>
+                                <Entry Text="{Binding CloseReason}" 
+                                       Placeholder="Ex: Bien vendu, annulation, etc." 
+                                       ClearButtonVisibility="WhileEditing"
+                                       HeightRequest="45"/>
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Boutons modifier -->
+                <Button Text="Modifier" 
+                        Command="{Binding SaveCommand}"/>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+</ContentPage>

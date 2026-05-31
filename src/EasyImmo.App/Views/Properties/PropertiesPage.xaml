@@ -1,11 +1,144 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyImmo.App.Views.Properties.PropertiesPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Propriétés"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="EasyImmo.App.Views.Properties.PropertiesPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto, Auto, *" RowSpacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0">
+
+                <Label Text="Propriétés"
+                       FontSize="24"
+                       FontFamily="OpenSansSemibold"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+
+                <Label Text="Gérez vos propriétés, mise en ventes et mise en location."
+                       TextColor="Gray"/>
+
+            </VerticalStackLayout>
+
+            <!-- Barre d'action -->
+            <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto">
+                <HorizontalStackLayout Grid.Column="0" Spacing="5">
+
+                    <SearchBar Placeholder="Rechercher une propriété"
+                               WidthRequest="250"
+                               HeightRequest="34"/>
+
+                    <Picker ItemsSource="{Binding FilterOptions}"
+                            SelectedItem="{Binding SelectedFilter}"
+                            WidthRequest="180"
+                            HeightRequest="34"/>
+
+                    <Label Text="{Binding PropertyCount, StringFormat='{0} Propriété(s) trouvée(s)'}"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="14"/>
+
+                </HorizontalStackLayout>
+
+                <!-- Bouton ajouter une propriété -->
+                <Button Grid.Column="2"
+                        Text="Ajouter une propriété"
+                        Command="{Binding AddPropertyCommand}"/>
+            </Grid>
+
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Properties}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="15" HorizontalItemSpacing="15" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <!-- Carte Propriété -->
+                        <Border StrokeShape="RoundRectangle 12" 
+                                BackgroundColor="White" 
+                                Stroke="{StaticResource BorderColor}"
+                                Padding="0">
+
+                            <VerticalStackLayout>
+
+                                <!-- Zone d'image -->
+                                <Image Source="https://www.demeures-cote-dargent.com/wp-content/uploads/2023/07/Groupe_InCA-M8_010.jpg"
+                                       HeightRequest="150"
+                                       Aspect="AspectFill"
+                                       BackgroundColor="#E0E0E0"/>
+
+                                <!-- Informations -->
+                                <VerticalStackLayout Padding="15" Spacing="5">
+
+                                    <!-- Type de bien -->
+                                    <Label Text="{Binding PropertyType.PropertyTypeName}" 
+                                           TextColor="Gray" 
+                                           FontSize="12" 
+                                           TextTransform="Uppercase"
+                                           FontAttributes="Bold"/>
+
+                                    <!-- Titre -->
+                                    <Label Text="{Binding PropertyTitle}" 
+                                           FontAttributes="Bold" 
+                                           TextColor="Black" 
+                                           FontSize="16"/>
+
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="{Binding PropertyDetails[0].BedroomCount, StringFormat='{0} Chambre(s)'}" TextColor="Gray"  FontSize="14"/>
+                                        <Label Text="{Binding PropertyDetails[0].TotalSurfaceArea, StringFormat='{0}m²'}" TextColor="Gray"  FontSize="14"/>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Code Postal et Ville -->
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="{Binding Address.Street.PostalCode.PostalCode1}"  TextColor="Gray" FontSize="14"/>
+                                        <Label Text="{Binding Address.Street.PostalCode.Municipality.MunicipalityName}" TextColor="Gray"  FontSize="14"/>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Boutons menu contextuel -->
+                                    <HorizontalStackLayout Spacing="10" 
+                                                           HorizontalOptions="End">
+
+                                        <Button Text="&#xE7b3;"
+                                                TextColor="white"
+                                                FontFamily="Segoe Fluent Icons"
+                                                ToolTipProperties.Text="Voir les détails de cette propriété"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DetailsPropertyCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Button Text="&#xE70F;"
+                                                TextColor="white"
+                                                FontFamily="Segoe Fluent Icons"
+                                                ToolTipProperties.Text="Modifier cette propriété"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditPropertyCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Button Text="&#xE74D;"
+                                                TextColor="white"
+                                                FontFamily="Segoe Fluent Icons"
+                                                ToolTipProperties.Text="Supprimer cette propriété"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeletePropertyCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+    </Border>
+
 </ContentPage>

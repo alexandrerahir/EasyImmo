@@ -1,11 +1,146 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyImmo.App.Views.People.PeoplePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Personnes"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="EasyImmo.App.Views.People.PeoplePage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <!-- Grid pour que le CollectionView prenne l'espace restant -->
+        <Grid RowDefinitions="Auto, Auto, *">
+
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0">
+                <Label Text="Personnes" FontSize="24" FontFamily="OpenSansSemibold" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Gérez vos contacts, propriétaires et locataires." TextColor="Gray"/>
+            </VerticalStackLayout>
+
+            <!-- Barre d'action -->
+            <Grid Grid.Row="1" 
+                  ColumnDefinitions="Auto, *, Auto"
+                  Margin="0,20,0,20">
+                <HorizontalStackLayout Grid.Column="0" Spacing="5">
+
+                    <SearchBar Placeholder="Rechercher une personne"
+                               WidthRequest="250"
+                               HeightRequest="34"/>
+
+                    <Label Text="{Binding People.Count, StringFormat='{0} Personne(s) trouvée(s)'}"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="14"/>
+
+                </HorizontalStackLayout>
+
+                <!-- Bouton ajouter une personne -->
+                <Button Grid.Column="2"
+                        Text="Ajouter une personne"
+                        Command="{Binding AddPersonCommand}"/>
+            </Grid>
+
+            <!-- Liste des personnes -->
+            <CollectionView Grid.Row="2"
+                            x:Name="PeopleCollection"
+                            ItemsSource="{Binding People}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 7"
+                                HeightRequest="70"
+                                BackgroundColor="White"
+                                StrokeThickness="1"
+                                Stroke="{StaticResource BorderColor}"
+                                Padding="20,0">
+
+                            <Grid ColumnDefinitions="50, *, Auto"
+                                  ColumnSpacing="20">
+
+                                <!-- Icon personnes -->
+                                <Border StrokeShape="RoundRectangle 25"
+                                        HeightRequest="50"
+                                        WidthRequest="50"
+                                        BackgroundColor="{StaticResource BorderColor}"
+                                        StrokeThickness="0">
+
+                                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="-2">
+                                        <Label Text="{Binding FirstNamePerson[0]}" TextColor="black" FontSize="20" FontFamily="OpenSansSemibold" />
+                                        <Label Text="{Binding LastNamePerson[0]}" TextColor="black" FontSize="20" FontFamily="OpenSansSemibold"/>
+                                    </HorizontalStackLayout>
+
+                                </Border>
+
+                                <!-- Nom Prénom et adresse mail -->
+                                <VerticalStackLayout Grid.Column="1"
+                                                     VerticalOptions="Center">
+
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="{Binding FirstNamePerson}"
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="14"/>
+
+                                        <Label Text="{Binding LastNamePerson}"
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
+
+                                    <Label Text="{Binding EmailPerson}"
+                                           TextColor="Gray"
+                                           FontSize="12"/>
+
+                                </VerticalStackLayout>
+
+                                <!-- Boutons menu contextuel -->
+                                <HorizontalStackLayout Grid.Column="2"
+                                                       Spacing="10"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="End">
+
+                                    <!-- Details -->
+                                    <Button Text="&#xE7b3;"
+                                            TextColor="white"
+                                            FontFamily="Segoe Fluent Icons"
+                                            ToolTipProperties.Text="Voir les détails de cette personne"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DetailsPersonCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                    <!-- Modifier -->
+                                    <Button Text="&#xE70F;"
+                                            TextColor="white"
+                                            FontFamily="Segoe Fluent Icons"
+                                            ToolTipProperties.Text="Modifier cette personne"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditPersonCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                    <!-- Supprimer -->
+                                    <Button Text="&#xE74D;"
+                                            TextColor="white"
+                                            FontFamily="Segoe Fluent Icons"
+                                            ToolTipProperties.Text="Supprimer cette personne"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeletePersonCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                </HorizontalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </Border>
 </ContentPage>

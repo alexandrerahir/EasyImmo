@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyImmo.App.Views.Calendar.CalendarPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Calendrier"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="EasyImmo.App.Views.Calendar.CalendarPage"
+             BackgroundColor="{StaticResource NavigationBackgroundColor}">
+
+    <Border BackgroundColor="{StaticResource PageBackgroundColor}"
+            StrokeThickness="1"
+            Stroke="{StaticResource BorderColor}"
+            Padding="20">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20,0,0,0"/>
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto, Auto, *" RowSpacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0">
+
+                <Label Text="Calendrier"
+                       FontSize="24"
+                       FontFamily="OpenSansSemibold"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+
+                <Label Text="Consultez et gérez vos événements à venir"
+                       TextColor="Gray"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
 </ContentPage>
